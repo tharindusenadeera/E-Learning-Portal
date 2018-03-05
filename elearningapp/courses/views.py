@@ -15,11 +15,6 @@ from courses.models import Course, Section, UserAnswer, Question
 #     # return HttpResponse("Hello Students !!!")
 #     return HttpResponse("Hello %s!!!" %who)
 
-def course_detail(request, course_id):
-    course = Course.objects.get(id=course_id)
-    return render(request, 'courses/course_detail.html',{
-        'course': course,
-    })
 
 class CourseDetailView(DetailView):
     model = Course
@@ -36,4 +31,5 @@ def course_add(request):
     if request.POST:
         form = CourseForm(request.POST)
         if form.is_valid():
-            new.course = form.save()
+            new_course = form.save()
+            return HttpResponseRedirect(new_course.get_absolute_url())
