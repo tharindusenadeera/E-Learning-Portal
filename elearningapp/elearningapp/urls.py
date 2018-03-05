@@ -20,5 +20,5 @@ from courses.views import my_first_view
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', my_first_view),
+    url(r'^(?P<who>.*)/$', my_first_view),
 ]
